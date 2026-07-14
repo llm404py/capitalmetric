@@ -1,4 +1,5 @@
 ---
+import Layout from '../../layouts/Layout.astro';
 export async function getStaticPaths() {
     const cities = [
       "delhi", "mumbai", "bangalore", "hyderabad", "ahmedabad", "chennai", "kolkata", 
@@ -10,38 +11,169 @@ export async function getStaticPaths() {
       "raipur", "kota", "guwahati", "chandigarh", "solapur", "hubli", "bareilly", "moradabad",
       "gorakhpur", "gurgaon", "noida", "aligarh", "jalandhar", "tiruchirappalli", "bhubaneswar"
     ];
-    return cities.map(city => ({ 
-      params: { city: city }, 
-      props: { cityName: city.charAt(0).toUpperCase() + city.slice(1).replace("-", " ") } 
-    }));
+    return cities.map(city => ({ params: { city: city }, props: { cityName: city.charAt(0).toUpperCase() + city.slice(1).replace("-", " ") } }));
 }
 const { cityName } = Astro.props;
 const { city } = Astro.params;
 const title = `Best Free UPI Loot & Refer Earn Tricks in ${cityName} (2026) | Skill2Income Hub`;
+const description = `Discover verified daily ₹200-₹500 Free UPI Cash earning tricks, 90% Flipkart price glitches, and student pocket money hacks for users in ${cityName}.`;
+const keywords = `Free UPI cash earning app ${cityName}, Flipkart 1 rupee glitch sale link ${cityName}, best refer and earn apps without kyc in ${cityName}`;
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title}</title>
-    <meta name="description" content={`Looking for verified daily ₹200-₹500 UPI Cash loots in ${cityName}? Join Skill2Income Hub telegram group for secret price glitches & earning tricks.`}>
+<Layout title={title} description={description} keywords={keywords} canonicalUrl={`https://capitalmetric.vercel.app/loot/${city}`}>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "Article", "headline": `How Students in ${cityName} Earn ₹500 Daily via Free UPI Loots & Glitches`, "description": description, "author": { "@type": "Organization", "name": "Skill2Income Hub" } },
+        { "@type": "FAQPage", "mainEntity": [
+          { "@type": "Question", "name": `Do these Free UPI Cashback tricks work across all neighborhoods in ${cityName}?`, "acceptedAnswer": { "@type": "Answer", "text": `Yes! Whether you reside anywhere in or around ${cityName}, all promotional UPI payouts via Paytm, Google Pay, and PhonePe transfer directly to your bank account within minutes.` } },
+          { "@type": "Question", "name": `How fast do Flipkart and Amazon price glitches deliver to pin codes in ${cityName}?`, "acceptedAnswer": { "@type": "Answer", "text": `Once you grab a 90% price glitch deal using our verified Telegram link, standard e-commerce delivery logistics apply to ${cityName}, usually reaching your doorstep in 2 to 4 business days.` } }
+        ]}
+      ]
+    })} />
+    <header class="header">
+        <div class="container navbar">
+            <a href="/" class="brand"><span class="brand-icon">⚡</span><span class="brand-text">Skill2Income <b>Hub</b></span></a>
+            <div class="nav-badges"><span class="status-dot">🟢</span> <b>Verified for {cityName}</b></div>
+        </div>
+    </header>
+    <main class="container main-content">
+        <section class="hero-wrapper">
+            <div class="pixel-card">
+                <div class="pixel-card-inner">
+                    <div class="card-left">
+                        <div class="top-pill">📍 {cityName.toUpperCase()} EDITION</div>
+                        <h1 class="card-heading">LOOT IT<br/><span class="loud-text">LOUD</span></h1>
+                        <p class="card-sub">₹500 Daily Cash in {cityName}.<br/>Zero Investment.</p>
+                        <div class="tag-row"><span class="white-tag">Instant UPI</span><span class="white-tag">100% Free</span></div>
+                        <a href={`https://t.me/ShivaCyberBot?start=loot_${city}`} class="shop-now-btn">CLAIM {cityName.toUpperCase()} LOOT ➔</a>
+                        <div class="starburst-badge"><span>₹500<br/>DAILY</span></div>
+                    </div>
+                    <div class="card-right">
+                        <div class="floating-illustration">
+                            <div class="illustration-circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+                                    <defs>
+                                        <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF066"/><stop offset="100%" stop-color="#D99B00"/></linearGradient>
+                                        <filter id="fl2" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="15" stdDeviation="12" flood-color="#000" flood-opacity="0.45"/></filter>
+                                    </defs>
+                                    <g filter="url(#fl2)">
+                                        <circle cx="100" cy="100" r="75" fill="url(#g2)" stroke="#FFF" stroke-width="4" />
+                                        <circle cx="100" cy="100" r="62" fill="none" stroke="#B87D00" stroke-width="2" stroke-dasharray="8 4" />
+                                        <text x="100" y="118" font-family="'Space Grotesk', sans-serif" font-size="58" font-weight="900" fill="#2B1D00" text-anchor="middle">⚡</text>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="visual-badge-top">📍 Active in {cityName}</div>
+                            <div class="visual-badge-bottom">⚡ Instant Verification</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <nav class="breadcrumbs"><span>🏠 <a href="/">Home</a></span> / <span>⚡ City Loots</span> / <span class="current">{cityName} Verified Deals (2026)</span></nav>
+        <section class="seo-summary-box">
+            <h2>🔥 Active Promotional Loots Available for {cityName} Residents Today</h2>
+            <p class="summary-intro">Are you located in or around <b>{cityName}</b> and tired of fake earning apps or expired discount coupons? Skill2Income Hub provides real-time verification for residents across {cityName}. Every single UPI referral promotion, grocery cashback voucher (Blinkit/Zepto), and Flipkart 90% price glitch is verified by our team before being published here.</p>
+            <div class="summary-grid">
+                <div class="summary-stat"><span class="stat-num">1,400+ Users</span><span class="stat-label">Active in {cityName} Region</span></div>
+                <div class="summary-stat"><span class="stat-num">100% Working</span><span class="stat-label">Verified Payout Links</span></div>
+                <div class="summary-stat"><span class="stat-num">2 Mins</span><span class="stat-label">Average Payout Time</span></div>
+            </div>
+        </section>
+        <section class="content-section">
+            <h2 class="section-title">⚡ Verified Deals & Tricks Active for {cityName} Today</h2>
+            <div class="table-responsive">
+                <table class="seo-table">
+                    <thead><tr><th>Deal Title & Platform</th><th>Reward Value</th><th>Applicability in {cityName}</th><th>Action</th></tr></thead>
+                    <tbody>
+                        <tr><td><b>💸 Free ₹200-₹500 UPI Cash</b><br/><span class="sub-platform">Brand Campaign Bonus</span></td><td><span class="reward-pill green">₹500 Direct UPI</span></td><td>All {cityName} Bank & UPI Accounts</td><td><a href={`https://t.me/ShivaCyberBot?start=loot_${city}`} class="action-btn">Unlock Now ➔</a></td></tr>
+                        <tr><td><b>👟 Flipkart ₹99 Price Glitch</b><br/><span class="sub-platform">Branded Footwear & Apparel</span></td><td><span class="reward-pill yellow">90% Price Drop Glitch</span></td><td>Available on {cityName} Pin Codes</td><td><a href={`https://t.me/ShivaCyberBot?start=loot_${city}`} class="action-btn">Grab Deal ➔</a></td></tr>
+                        <tr><td><b>🛒 Blinkit Free Grocery</b><br/><span class="sub-platform">100% Cashback Voucher</span></td><td><span class="reward-pill blue">Free ₹150 Pack</span></td><td>Valid across {cityName} Delivery Zones</td><td><a href={`https://t.me/ShivaCyberBot?start=loot_${city}`} class="action-btn">Get Code ➔</a></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="content-section article-body">
+            <h2 class="section-title">Why Students in {cityName} Prefer Skill2Income Hub over Regular Coupon Sites</h2>
+            <p>As e-commerce adoption surges across {cityName}, thousands of college students and young professionals look for legitimate earning hacks and deep shopping discounts. Unlike general coupon websites that list generic affiliate links that fail at checkout, we verify payouts directly.</p>
+            <h3>1. Verified Instant UPI Cash Tricks</h3>
+            <p>Whether you use Paytm, Google Pay, or PhonePe in {cityName}, our automated bot authenticates your joining status and releases the payout claim form instantly without requiring bank credentials.</p>
+            <h3>2. E-Commerce Glitch Alerts for {cityName} Pin Codes</h3>
+            <p>When Flipkart or Amazon accidentally list ₹2,999 items for ₹99 during midnight database updates, stock runs out within 5 to 10 minutes. By joining our Telegram verification system, users in {cityName} get push alerts the exact second the glitch goes live.</p>
+        </section>
+        <section class="content-section faq-section">
+            <h2 class="section-title">❓ Frequently Asked Questions ({cityName} Edition)</h2>
+            <div class="faq-list">
+                <details class="faq-item" open><summary>Do these Free UPI Cashback tricks work across all neighborhoods in {cityName}?</summary><div class="faq-answer"><p>Yes! Whether you reside anywhere in or around {cityName}, all promotional UPI payouts via Paytm, Google Pay, and PhonePe transfer directly to your bank account within minutes.</p></div></details>
+                <details class="faq-item"><summary>How fast do Flipkart and Amazon price glitches deliver to pin codes in {cityName}?</summary><div class="faq-answer"><p>Once you grab a 90% price glitch deal using our verified Telegram link, standard e-commerce delivery logistics apply to {cityName}, usually reaching your doorstep in 2 to 4 business days.</p></div></details>
+                <details class="faq-item"><summary>Why is Telegram verification mandatory before claiming {cityName} deals?</summary><div class="faq-answer"><p>To prevent automated bots from claiming limited promotional funds meant for real community members in {cityName}, our bot verifies human participation before unlocking direct URLs.</p></div></details>
+            </div>
+        </section>
+        <section class="bottom-cta">
+            <h2>Unlock Your {cityName} Exclusive Loot Now ⚡</h2>
+            <p>Don't miss today's active ₹500 UPI cash drop and 90% shopping glitches verified for {cityName}.</p>
+            <a href={`https://t.me/ShivaCyberBot?start=loot_${city}`} class="shop-now-btn big-btn">CLAIM {cityName.toUpperCase()} LOOT NOW ➔</a>
+        </section>
+    </main>
+    <footer class="footer"><div class="container"><p>© 2026 Skill2Income Hub ({cityName} Portal). All rights reserved. • Human-Verified India Deals Network</p></div></footer>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #0f0c29; color: white; text-align: center; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
-        .container { background: rgba(255,255,255,0.1); padding: 40px; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); max-width: 480px; }
-        .badge { background: #ffd700; color: #000; padding: 6px 16px; border-radius: 20px; font-weight: bold; font-size: 13px; text-transform: uppercase; }
-        h1 { color: #ffd700; font-size: 1.9rem; margin: 15px 0; }
-        p { font-size: 1.05rem; opacity: 0.9; line-height: 1.5; margin-bottom: 25px; }
-        .btn { background: linear-gradient(45deg, #ffd700, #ffae00); color: black; padding: 16px 32px; font-weight: bold; text-decoration: none; border-radius: 50px; display: inline-block; box-shadow: 0 5px 15px rgba(255,215,0,0.4); }
-        .btn:hover { transform: scale(1.05); }
+        .header { background: rgba(13, 15, 20, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.08); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .brand { font-size: 1.4rem; display: flex; align-items: center; gap: 8px; color: #fff; }
+        .brand-icon { background: var(--yellow); color: #000; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .nav-badges { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); padding: 8px 16px; border-radius: 50px; font-size: 0.9rem; }
+        .main-content { padding-top: 30px; padding-bottom: 60px; }
+        .hero-wrapper { margin-bottom: 35px; }
+        .pixel-card { width: 100%; border-radius: 20px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); border: 2px solid rgba(255, 255, 255, 0.15); background: #151821; }
+        .pixel-card-inner { display: grid; grid-template-columns: 1.15fr 0.85fr; min-height: 420px; position: relative; }
+        .card-left { background-color: var(--yellow); color: #000; padding: 45px 40px 40px 45px; position: relative; z-index: 2; clip-path: polygon(0 0, 100% 0, 84% 100%, 0% 100%); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+        .card-right { background-color: var(--blue); padding: 40px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; margin-left: -16%; }
+        .top-pill { background: #ffffff; color: #000000; font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 0.8rem; padding: 6px 16px; border-radius: 50px; margin-bottom: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .card-heading { font-family: 'Space Grotesk', sans-serif; font-size: 3.8rem; font-weight: 900; line-height: 0.95; text-transform: uppercase; letter-spacing: -2px; margin-bottom: 15px; color: #000000; }
+        .loud-text { text-decoration: underline; text-decoration-thickness: 6px; text-underline-offset: 6px; }
+        .card-sub { font-size: 1.25rem; font-weight: 700; line-height: 1.35; margin-bottom: 22px; color: #111; }
+        .tag-row { display: flex; gap: 10px; margin-bottom: 26px; flex-wrap: wrap; }
+        .white-tag { background: #ffffff; color: #000000; font-weight: 800; font-size: 0.85rem; padding: 7px 16px; border-radius: 50px; }
+        .shop-now-btn { background: var(--pink); color: #000000; font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.15rem; padding: 15px 32px; border-radius: 50px; border: 2.5px solid #000000; box-shadow: 0 6px 0 #000000; transition: all 0.2s; display: inline-flex; align-items: center; gap: 10px; }
+        .shop-now-btn:hover { transform: translateY(-3px); box-shadow: 0 9px 0 #000000; background: #ff91cf; }
+        .starburst-badge { position: absolute; bottom: 25px; left: 35px; width: 85px; height: 85px; background: #000000; color: #ffffff; display: flex; align-items: center; justify-content: center; text-align: center; font-family: 'Space Grotesk', sans-serif; font-weight: 900; font-size: 0.85rem; clip-path: polygon(50% 0%, 61% 16%, 80% 5%, 82% 25%, 100% 25%, 91% 43%, 100% 60%, 84% 71%, 88% 90%, 69% 88%, 56% 100%, 42% 89%, 23% 94%, 23% 74%, 4% 73%, 14% 55%, 0% 39%, 16% 28%, 10% 9%, 31% 16%); transform: rotate(-10deg); }
+        .floating-illustration { position: relative; display: flex; flex-direction: column; align-items: center; width: 100%; }
+        .illustration-circle { width: 220px; height: 220px; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5)); animation: float 4s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-12px) rotate(3deg); } }
+        .visual-badge-top, .visual-badge-bottom { background: rgba(0, 0, 0, 0.85); color: #fff; font-weight: 700; font-size: 0.85rem; padding: 8px 18px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.25); position: absolute; white-space: nowrap; }
+        .visual-badge-top { top: -10px; right: 10px; }
+        .visual-badge-bottom { bottom: -10px; left: 10px; }
+        .breadcrumbs { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; padding: 10px 18px; background: rgba(255, 255, 255, 0.03); border-radius: 10px; }
+        .seo-summary-box { background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 32px; margin-bottom: 40px; }
+        .seo-summary-box h2 { font-size: 1.6rem; color: var(--yellow); margin-bottom: 12px; }
+        .summary-intro { color: var(--text-muted); margin-bottom: 28px; }
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
+        .summary-stat { background: rgba(255, 255, 255, 0.04); padding: 20px; border-radius: 12px; text-align: center; }
+        .stat-num { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+        .content-section { background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 35px; margin-bottom: 40px; }
+        .section-title { font-size: 1.7rem; font-family: 'Space Grotesk', sans-serif; color: #fff; margin-bottom: 10px; }
+        .seo-table { width: 100%; border-collapse: collapse; text-align: left; margin-top: 10px; }
+        .seo-table th, .seo-table td { padding: 16px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+        .reward-pill { display: inline-block; padding: 5px 14px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; }
+        .reward-pill.green { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+        .reward-pill.yellow { background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3); }
+        .reward-pill.blue { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .action-btn { background: var(--yellow); color: #000; font-weight: 800; font-size: 0.88rem; padding: 8px 16px; border-radius: 8px; }
+        .article-body h3 { font-size: 1.35rem; color: var(--yellow); margin: 28px 0 12px 0; }
+        .article-body p { color: var(--text-muted); margin-bottom: 16px; }
+        .faq-list { margin-top: 25px; display: flex; flex-direction: column; gap: 16px; }
+        .faq-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; }
+        .faq-item summary { padding: 20px 24px; font-weight: 700; font-size: 1.08rem; cursor: pointer; color: #fff; }
+        .faq-answer { padding: 0 24px 20px 24px; color: var(--text-muted); }
+        .bottom-cta { background: linear-gradient(135deg, rgba(22, 101, 255, 0.25), rgba(255, 222, 0, 0.15)); border: 2px solid var(--yellow); border-radius: 20px; padding: 45px 30px; text-align: center; margin-bottom: 40px; }
+        .bottom-cta h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; color: #fff; margin-bottom: 12px; }
+        .footer { background: #090a0d; border-top: 1px solid rgba(255, 255, 255, 0.07); padding: 40px 0; text-align: center; color: var(--text-muted); }
+        @media (max-width: 850px) {
+            .pixel-card-inner { grid-template-columns: 1fr; }
+            .card-left { clip-path: none; padding: 35px 28px; align-items: center; text-align: center; }
+            .card-right { margin-left: 0; padding: 35px 20px 45px 20px; }
+            .card-heading { font-size: 2.8rem; }
+            .starburst-badge { left: auto; right: 25px; bottom: 15px; width: 70px; height: 70px; font-size: 0.75rem; }
+        }
     </style>
-</head>
-<body>
-    <div class="container">
-        <span class="badge">📍 Exclusive for {cityName} Students</span>
-        <h1>🚀 Secret UPI Loot in {cityName}</h1>
-        <p>Unlock our verified daily earning glitch and refer-and-earn tricks specifically curated for users across {cityName}. Claim ₹200-₹500 instantly into your UPI/Bank account!</p>
-        <a href={`https://t.me/ShivaCyberBot?start=loot_${city}`} class="btn">CLAIM {cityName.toUpperCase()} LOOT NOW 🔓</a>
-    </div>
-</body>
-</html>
+</Layout>
