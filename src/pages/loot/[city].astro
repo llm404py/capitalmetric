@@ -1,0 +1,47 @@
+---
+export async function getStaticPaths() {
+    const cities = [
+      "delhi", "mumbai", "bangalore", "hyderabad", "ahmedabad", "chennai", "kolkata", 
+      "surat", "pune", "jaipur", "lucknow", "kanpur", "nagpur", "indore", "thane", 
+      "bhopal", "visakhapatnam", "patna", "vadodara", "ghaziabad", "ludhiana", "agra", 
+      "nashik", "ranchi", "faridabad", "meerut", "rajkot", "kalyan", "vasai", "varanasi", 
+      "srinagar", "aurangabad", "dhanbad", "amritsar", "navi-mumbai", "allahabad", 
+      "howrah", "gwalior", "jabalpur", "coimbatore", "vijayawada", "jodhpur", "madurai", 
+      "raipur", "kota", "guwahati", "chandigarh", "solapur", "hubli", "bareilly", "moradabad",
+      "gorakhpur", "gurgaon", "noida", "aligarh", "jalandhar", "tiruchirappalli", "bhubaneswar"
+    ];
+    return cities.map(city => ({ 
+      params: { city: city }, 
+      props: { cityName: city.charAt(0).toUpperCase() + city.slice(1).replace("-", " ") } 
+    }));
+}
+const { cityName } = Astro.props;
+const { city } = Astro.params;
+const title = `Best Free UPI Loot & Refer Earn Tricks in ${cityName} (2026) | Skill2Income Hub`;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={`Looking for verified daily ₹200-₹500 UPI Cash loots in ${cityName}? Join Skill2Income Hub telegram group for secret price glitches & earning tricks.`}>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #0f0c29; color: white; text-align: center; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        .container { background: rgba(255,255,255,0.1); padding: 40px; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); max-width: 480px; }
+        .badge { background: #ffd700; color: #000; padding: 6px 16px; border-radius: 20px; font-weight: bold; font-size: 13px; text-transform: uppercase; }
+        h1 { color: #ffd700; font-size: 1.9rem; margin: 15px 0; }
+        p { font-size: 1.05rem; opacity: 0.9; line-height: 1.5; margin-bottom: 25px; }
+        .btn { background: linear-gradient(45deg, #ffd700, #ffae00); color: black; padding: 16px 32px; font-weight: bold; text-decoration: none; border-radius: 50px; display: inline-block; box-shadow: 0 5px 15px rgba(255,215,0,0.4); }
+        .btn:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="badge">📍 Exclusive for {cityName} Students</span>
+        <h1>🚀 Secret UPI Loot in {cityName}</h1>
+        <p>Unlock our verified daily earning glitch and refer-and-earn tricks specifically curated for users across {cityName}. Claim ₹200-₹500 instantly into your UPI/Bank account!</p>
+        <a href={`https://t.me/ShivaCyberBot?start=loot_${city}`} class="btn">CLAIM {cityName.toUpperCase()} LOOT NOW 🔓</a>
+    </div>
+</body>
+</html>
