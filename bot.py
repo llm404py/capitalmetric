@@ -1,11 +1,15 @@
 import logging
 import sqlite3
-from aiogram import Bot, Dispatcher, types, executor
+import asyncio
+from aiogram import Bot, Dispatcher, types, F
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from aiogram.dispatcher.filters import Text
+from aiogram.filters import CommandStart, Command
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 # --- CONFIGURATION ---
-API_TOKEN = '8339426153:AAGTzWHQDCdEwG-lavYbkGyIvPAfPfYR_v8'
+# Use environment variables for security
+import os
+API_TOKEN = os.getenv('API_TOKEN', '8339426153:AAGTzWHQDCdEwG-lavYbkGyIvPAfPfYR_v8')
 CHANNEL_USERNAME = '@skill2incomehub'
 REQUIRED_REFERRALS = 3
 LOOT_MESSAGE = "🎉 Congratulations! Here is your Secret UPI Loot: [Yahan apna loot link ya trick daalein]"
@@ -21,7 +25,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS users
 conn.commit()
 
 bot = Bot(token=API_TOKEN)
-dp = Dispatcher(bot)
+dp = Dispatcher()
 
 async def is_member(user_id):
     try:
@@ -30,17 +34,17 @@ async def is_member(user_id):
     except Exception:
         return False
 
-@dp.message_handler(commands=['start'])
+@dp.message(CommandStart())
 async def start_cmd(message: types.Message):
     user_id = message.from_user.id
-    args = message.get_args()
+    args = message.text.split()
+    referred_by = None
 
     # Register user in DB
     cursor.execute("SELECT user_id FROM users WHERE user_id = ?", (user_id,))
     if cursor.fetchone() is None:
-        referred_by = None
-        if args and args.isdigit():
-            referred_by = int(args)
+        if len(args) > 1 and args[1].isdigit():
+            referred_by = int(args[1])
             if referred_by != user_id:
                 cursor.execute("UPDATE users SET ref_count = ref_count + 1 WHERE user_id = ?", (referred_by,))
                 conn.commit()
@@ -50,17 +54,18 @@ async def start_cmd(message: types.Message):
 
     # Check Membership
     if not await is_member(user_id):
-        markup = InlineKeyboardMarkup().add(
-            InlineKeyboardButton("Join Channel 📢", url=f"https://t.me/{CHANNEL_USERNAME[1:]}"),
-            InlineKeyboardButton("I have Joined ✅", callback_data="check_join")
-        )
-        return await message.answer(f"❌ Welcome! To unlock the secret loot, you must first join our channel {CHANNEL_USERNAME}!", reply_markup=markup)
+        builder = InlineKeyboardBuilder()
+        builder.row(InlineKeyboardButton(text="Join Channel 📢", url=f"https://t.me/{CHANNEL_USERNAME[1:]}"))
+        builder.row(InlineKeyboardButton(text="I have Joined ✅", callback_data="check_join"))
+        
+        return await message.answer(f"❌ Welcome! To unlock the secret loot, you must first join our channel {CHANNEL_USERNAME}!", reply_markup=builder.as_markup())
 
     # Show Referral Status
     cursor.execute("SELECT ref_count FROM users WHERE user_id = ?", (user_id,))
     count = cursor.fetchone()[0]
     
-    ref_link = f"https://t.me/{(await bot.get_me()).username}?start={user_id}"
+    bot_info = await bot.get_me()
+    ref_link = f"https://t.me/{bot_info.username}?start={user_id}"
     
     if count >= REQUIRED_REFERRALS:
         await message.answer(f"🔥 YOU UNLOCKED THE LOOT!\n\n{LOOT_MESSAGE}")
@@ -72,14 +77,25 @@ async def start_cmd(message: types.Message):
                 f"Share this link with your friends!")
         await message.answer(text)
 
-@dp.callback_query_handler(Text(equals="check_join"))
+@dp.callback_query(F.data == "check_join")
 async def check_join(callback: types.CallbackQuery):
     if await is_member(callback.from_user.id):
         await callback.answer("✅ Membership Verified!", show_alert=True)
-        # Trigger start logic again to show referrals
-        await start_cmd(callback.message)
+        # We can't call start_cmd directly easily, so we send the status
+        cursor.execute("SELECT ref_count FROM users WHERE user_id = ?", (callback.from_user.id,))
+        count = cursor.fetchone()[0]
+        bot_info = await bot.get_me()
+        ref_link = f"https://t.me/{bot_info.username}?start={callback.from_user.id}"
+        
+        if count >= REQUIRED_REFERRALS:
+            await callback.message.answer(f"🔥 YOU UNLOCKED THE LOOT!\n\n{LOOT_MESSAGE}")
+        else:
+            await callback.message.answer(f"✅ Joined! Now invite {REQUIRED_REFERRALS} friends to unlock the loot.\n\nYour Link: {ref_link}")
     else:
         await callback.answer("❌ You haven't joined yet!", show_alert=True)
 
+async def main():
+    await dp.start_polling(bot)
+
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+    asyncio.run(main())
